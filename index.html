@@ -7,6 +7,31 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="style.css">
 
+    <script>
+      window.onload = () => {
+          const images = document.querySelectorAll('img');
+
+          images.forEach(img => {
+              img.onerror = () => {
+                  // Wenn das Bild nicht geladen werden kann, setze auf das Platzhalterbild
+                  img.src = 'media/placeholder.jpg';
+              };
+
+              // Überprüfe, ob das Bild tatsächlich existiert
+              fetch(img.src, { method: 'HEAD' })
+                  .then(response => {
+                      if (!response.ok) {
+                          // Wenn das Bild nicht existiert, setze auf das Platzhalterbild
+                          img.src = 'media/placeholder.jpg';
+                      }
+                  })
+                  .catch(() => {
+                      // Fehler beim Abrufen, setze auf das Platzhalterbild
+                      img.src = 'media/placeholder.jpg';
+                  });
+          });
+      };
+  </script>
     <!-- the below three lines are a fix to get HTML5 semantic elements working in old versions of Internet Explorer-->
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -173,7 +198,7 @@
       <p>©Copyright 2050 by nobody. All rights reversed.</p>
     </footer>
 
-    <script src="main.js"></script>
+    <script type="module" src="main.js"></script>
 
   </body>
 </html>

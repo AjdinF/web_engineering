@@ -56,11 +56,11 @@ Fix application code and answer the questions:
 
 >  **What bad coding practices did you find? Why is it a bad practice and how did you fix it?**
 
-Present your findings here...
-``` JS
-console.log('Make use of markdown codesnippets to show and explain good/bad practices!')
-```
+**Exchange var with const** --> [Exchange_var_with_const](./code_practices/exchange_var_with_const.md).
 
+**Add try and catch** --> [Add_try_and_catch](./code_practices/add_try_catch.md).
+
+**Add Async function** -->[Add_async_functions](./code_practices/add_async_functions.md).
 
 ## 2. Dependency- and Build Management Playground (10 Pts.)
 Build the application with ``npm`` and a build and a dependency management tool of your choice (e.g. [Vite](https://vitejs.dev/), [Webpack](https://webpack.js.org/), or others). 
