@@ -112,7 +112,20 @@ Apply the following ruleset for Prettier:
 
 >  **What improvements in your codebase were introduced by using TS instead of JS? Name at least 3 and explain why.**
 
-Present your findings here...
+**01. Seperation of Prod (dist) and Dev Builds** 
+* Dist is usually optimized for production in order to reduce file size and improve load times. --> better performance
+* The development on the other side for example is also improved: no need to reload the full page, improved debugging and testing, etc.
+
+**02. Use of Linters and formatters**
+* Linters help to catch potential erros during development before the code is run --> unused variables, unreachable code, or type mismatches identified easily
+* Prettier enforces a consistend code style across the codebase. Useful when more people are working on the same code so that you have better structure inside.
+
+**03. Use of dependency- & build managment tool**
+* clearer feedback and better IDE support
+* faster Server starts and efficient hot module replacement
+* automtic tree shaking an dcode splitting for smaller bundle sizes
+* early detection of errors and safer refactoring
+
 
 ## 3.	CI/CD Pipeline Playground (5 Pts.)
 Implementation of a CI/CD pipeline to automate the development and deployment process – write automated tests.
