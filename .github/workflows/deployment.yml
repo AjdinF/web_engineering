@@ -1,0 +1,66 @@
+name: Deployment Workflow
+on: 
+  push:
+      branches: [main] #push into main
+
+jobs:
+   test:
+     name: Deployment Application
+     runs-on: ubuntu-latest #reuse development workflow
+     steps:
+         - name: Checkout repository
+           uses: actions/checkout@v3
+
+         - name: Setup node
+           uses: actions/setup-node@v3
+           with:
+              node-version: '18.x'
+
+         - name: Install dependencies
+           run: npm ci
+
+         - name: Run tests
+           run: npm run test --if-present
+   
+   build:
+     name: Build Application
+     runs-on: ubuntu-latest # Use the latest Ubuntu environment
+     needs: test # Ensure 'test' job completes before running 'build'
+     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3 # Check out the repository
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Specify Node.js version
+
+      - name: Install dependencies
+        run: npm install # Install project dependencies
+
+      - name: Build project
+        run: npm run build # Run the build process for the project
+
+      - name: Upload build artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./dist # Upload the build output from the 'dist' folder
+ 
+   deployment:
+     name: Deploy to GitHub Pages
+     runs-on: ubuntu-latest # Use the latest Ubuntu environment
+     needs: build # Ensure 'build' job completes before running 'deployment'
+     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3 # Check out the repository
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v3 # Configure GitHub Pages
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: github-pages # Name of the uploaded artifact
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2 # Deploy the build artifacts to GitHub Pages
