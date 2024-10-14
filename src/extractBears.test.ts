@@ -1,34 +1,46 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { extractBears } from './extractBears';
+import { JSDOM } from 'jsdom';
+import { fetchImageUrl } from './fetchImageUrl'; // Mock this function
+
+// Mock fetchImageUrl to return a specific value instead of making actual API calls
+vi.mock('./fetchImageUrl', () => ({
+  fetchImageUrl: vi.fn().mockResolvedValue('https://example.com/bear_image.jpg'),
+}));
 
 describe('extractBears', () => {
-  it('should correctly extract bear data from wikitext', async () => {
+  // Set up JSDOM to simulate the browser environment
+  beforeEach(() => {
+    const dom = new JSDOM(`<!DOCTYPE html><html><body><div class="more_bears"></div></body></html>`);
+    global.document = dom.window.document;
+  });
+
+  it('should extract bear data and update the DOM correctly', async () => {
     const mockWikitext = `
       {{Species table/row|name=[[Polar bear]]|binomial=Ursus maritimus|image=polar_bear.jpg|range=Arctic}}
       {{Species table/end}}
     `;
 
-    const bears = await extractBears(mockWikitext);
+    await extractBears(mockWikitext);
 
-    expect(bears).toHaveLength(1);
-    expect(bears[0].name).toBe('Polar bear');
-    expect(bears[0].binomial).toBe('Ursus maritimus');
-    expect(bears[0].image).toBeUndefined(); // Assuming image fetching is external and not part of this test
-    expect(bears[0].range).toBe('Arctic');
+    // Check if the bears are extracted correctly
+    const moreBearsSection = document.querySelector('.more_bears');
+    expect(moreBearsSection?.innerHTML).toContain('Polar bear');
+    expect(moreBearsSection?.innerHTML).toContain('Ursus maritimus');
+    expect(moreBearsSection?.innerHTML).toContain('https://example.com/bear_image.jpg');
+    expect(moreBearsSection?.innerHTML).toContain('Arctic');
   });
 
-  it('should handle cases where bear data is incomplete', async () => {
+  it('should not update the DOM when image is missing', async () => {
     const mockWikitext = `
       {{Species table/row|name=[[Grizzly bear]]|binomial=Ursus arctos|range=North America}}
       {{Species table/end}}
     `;
 
-    const bears = await extractBears(mockWikitext);
+    await extractBears(mockWikitext);
 
-    expect(bears).toHaveLength(1);
-    expect(bears[0].name).toBe('Grizzly bear');
-    expect(bears[0].binomial).toBe('Ursus arctos');
-    expect(bears[0].image).toBeUndefined(); // No image provided in wikitext
-    expect(bears[0].range).toBe('North America');
+    // Check if the DOM was NOT updated due to missing image
+    const moreBearsSection = document.querySelector('.more_bears');
+    expect(moreBearsSection?.innerHTML).toBe(''); // No bear should be added since image is missing
   });
 });
