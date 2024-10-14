@@ -3,6 +3,10 @@ on:
   push:
       branches: [main] #push into main
 
+permissions:
+  contents: write
+  id-token: write
+
 jobs:
    test:
      name: Deployment Application
