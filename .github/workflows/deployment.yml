@@ -4,8 +4,9 @@ on:
       branches: [main] #push into main
 
 permissions:
-  contents: write
+  contents: read
   id-token: write
+  pages: write
 
 jobs:
    test:
