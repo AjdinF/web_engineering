@@ -1,7 +1,7 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { extractBears } from './extractBears';
 import { JSDOM } from 'jsdom';
-import { fetchImageUrl } from './fetchImageUrl'; // Mock this function
+
 
 // Mock fetchImageUrl to return a specific value instead of making actual API calls
 vi.mock('./fetchImageUrl', () => ({
