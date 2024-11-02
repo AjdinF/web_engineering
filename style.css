@@ -55,6 +55,10 @@ li{
 
 /* || header layout */
 
+h1 {
+  font-size: 4rem; /* Base font size for large screens */
+}
+
 article, .secondary {
   background-color: #f0eddb;
 }
@@ -123,7 +127,14 @@ div[class="nav"] .search {
   border: 0;
   color: white;
 }
-
+.search label {
+  display: inline-block;
+  font-size: 2.0rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;       
+}
 footer p {
   color: #ffffff;
   font-weight: bold;
