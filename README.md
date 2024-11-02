@@ -43,7 +43,7 @@ Submit your coding repository link in Moodle. Send me an invitation to your repo
 The provided base project template contains some bugs and bad JS coding practices for you to fix in your first playground. Take a look into the component files and get a grasp of the inner workings of the provided project.
 > **ATTENTION: After finishing the JS Playground please create a commit or branch and link it below. Otherwise it is not possible to grade your 1. submission, since we will switch to TypeScript afterwards!**
 > 
-> **This is my JS Playground commit/branch:** <LINK_TO_YOUR_COMMIT>
+> **This is my JS Playground commit/branch:** [<LINK_TO_YOUR_COMMIT>](https://github.com/AjdinF/web_engineering/tree/task1_jsplayground).
 
 **Tasks:**
 Fix application code and answer the questions:
@@ -150,41 +150,56 @@ Use the tools presented in our accessibility workshop to test the accessibility 
 
 Test the current color contrast (text/background), report the results of the test, and then fix them by changing the assigned colors.
 
-*Present your reports here.*
+* I had several errors regarding the color in the Wave Tool.
+* Therefore I decided to change the colors to be:
+  * appeling to the eye
+  * avoiding Red/Green to begin with
+  * choose colors that represent bears and wildlife
+  * light colors but not bright to be easier to read
+* I had main issues also with the Links as they were not readable on dark background --> decided to have same background as the article itself.
 
 **(0.5) Semantic HTML**
 
 Report on what happens when you try to navigate the page using a screen reader. Fix those navigation issues.
 
-*Present your reports here.*
+* Main issue with the Screen reader is that if you only use the TAB for navigation it starts ate nav bar instead of the main header and also does not read the articel but jumps to the next audio and afterwards to the related links.
+* I used the tabindex in order to set the correct order and also exchanged the text with headers and paragraphs in order that it used already the hierarchy
+
 
 **(0.5) Audio** 
 
 The ``<audio>`` player isn't accessible to hearing impaired (deaf) people — can you add some kind of accessible alternative for these users?
 
-*Present your findings and fixes here.*
+* Here I added a transcription of what was said in the audio directly below in order that also impaired people can read what is said in the audio.
+* other than that there are no other audios that would require an transcription
 
 **(1) Forms** 
   * The ``<input>`` element in the search form at the top could do with a label, but we don't want to add a visible text label that would potentially spoil the design and isn't really needed by sighted users. Fix this issue by adding a label that is only accessible to screen readers.
   * The two ``<input>`` elements in the comment form have visible text labels, but they are not unambiguously associated with their labels — how do you achieve this? Note that you'll need to update some of the CSS rule as well.
 
-*Present your findings and fixes here.*
+* for the first part of this task i added an aria-label that is read by the screen reader in order that blind people know what they have to do here.
+* for the second part of the question i just added "For=name" in the label and that is assosiated with the id=name of the input element
 
 **(0.5) Comment section**
 
 The show/hide comment control button is not currently keyboard-accessible. Can you make it keyboard accessible, both in terms of focusing it using the tab key, and activating it using the return key?
 
-*Present your findings and fixes here.*
+* i created a toggleComments.js file focusing on showing and hiding the comment section using the return key or space key.
+* then i made some small adaptions to my comment section and also added the script at the end of the html.
 
 **(1) The table**
 
 The data table is not currently very accessible — it is hard for screen reader users to associate data rows and columns together, and the table also has no kind of summary to make it clear what it shows. Can you add some features to your HTML to fix this problem?
 
-*Present your findings and fixes here.*
+* here i only changed the aria-label to explain what the content of the table is.
+* i also changed the first row into headers making it more visible and clear.
 
 **(1) More Findings**
 
-What other accessibility issues did you find? Explain how you did fix them.
+* I changed the article style. it was plain text and not put in a hierarchy (h1, h2, h3, h4, ...) so i changed this for the whole page.
+* i also changed some stylings in order to avoid any errors due to low contrast
+* i added alt text on the pictures.
+* i increased the sice of the links to make them better visible.
 
 # Extended Coding Playgrounds
 Please create a new independent Repository for these playgrounds and submit a link to it in the Moodle submission. 

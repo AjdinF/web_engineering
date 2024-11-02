@@ -38,7 +38,7 @@ export async function extractBears(wikitext: string) {
             bears.forEach((bear) => {
               moreBearsSection.innerHTML += `
               <div>
-                <h3>${bear.name} (${bear.binomial})</h3>
+                <h4>${bear.name} (${bear.binomial})</h4>
                 <img src="${bear.image}" alt="${bear.name}" style="width:200px; height:auto;">
                 <p><strong>Range:</strong> ${bear.range}</p>
               </div>

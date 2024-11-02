@@ -18,7 +18,7 @@ body {
 
 /* || typography */
 
-font[size="7"], font[size="6"], font[size="5"] {
+h1, h2, h3, h4 {
   font-family: 'Sonsie One', cursive;
   color: #2a2a2a;
 }
@@ -28,20 +28,6 @@ p, input, li, table, label {
   color: #2a2a2a;
 }
 
-font[size="7"] {
-  font-size: 4rem;
-  text-align: center;
-  color: #000000;
-}
-
-font[size="6"] {
-  font-size: 3rem;
-  text-align: center;
-}
-
-font[size="5"] {
-  font-size: 2.2rem;
-}
 
 p, table {
   font-size: 1.6rem;
@@ -56,8 +42,24 @@ li{
 /* || header layout */
 
 h1 {
-  font-size: 4rem; /* Base font size for large screens */
+  font-size: 4rem;
+  text-align: center;
+  color: #000000;
+
 }
+h2 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+h3 {
+  font-size: 2.2rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
 
 article, .secondary {
   background-color: #f0eddb;
@@ -195,7 +197,7 @@ audio {
 /* Comments styling */
 
 .comments {
-  background-color: #f0eddb;
+  background-color: #5c4f51;
   padding: 10px;
 }
 
@@ -203,12 +205,14 @@ audio {
   cursor: pointer;
 }
 
-.comments font[size="6"] {
+.comments h3 {
   font-size: 2rem;
+  color: rgb(255, 255, 255);
 }
 
-.comments font[size="6"]:nth-of-type(2) {
-  margin-bottom: 0;
+.comments h4 {
+  font-size: 2rem;
+  color: rgb(255, 255, 255);
 }
 
 .comment-form {
@@ -224,11 +228,14 @@ audio {
   align-self: center;
   flex: 2;
   text-align: right;
+  font-weight: bold;  
+  color: rgb(255, 255, 255);
 }
 
 .comment-form input {
   margin-left: 1rem;
   flex: 6;
+  color: rgb(0, 0, 0);
 }
 
 .show-hide {
@@ -244,13 +251,14 @@ audio {
 .comment-form input[type="submit"], .show-hide {
   background: #333;
   border: 0;
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .comment-form input[type="submit"] {
   width: 30%;
   display: block;
   margin: 0 auto;
+  color: rgb(255, 255, 255);
 }
 
 .comment-container {
@@ -260,13 +268,16 @@ audio {
 .comment-container li {
   list-style-type: none;
   display: flex;
+  color: rgb(255, 255, 255);
 }
 
 .comment-container li p:nth-child(1) {
   flex: 1;
   font-weight: bold;
+  color: rgb(255, 255, 255);
 }
 
 .comment-container li p:nth-child(2) {
   flex: 5;
+  color: rgb(255, 255, 255);
 }
